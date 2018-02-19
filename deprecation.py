@@ -186,9 +186,14 @@ def deprecated(deprecated_in=None, removed_in=None, current_version=None,
                 summary = existing_docstring[:pos]
                 contents = existing_docstring[pos:]
 
+                newline = "\n"
+                # remove comment, to fix indentation problem
+                # if newline not in contents[-1]:
+                #     newline += newline
+
                 function.__doc__ = "".join([summary,
                                             textwrap.dedent(contents),
-                                            "\n",
+                                            newline,
                                             deprecation_note])
             else:
                 function.__doc__ = "\n\n".join([existing_docstring,

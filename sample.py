@@ -1,3 +1,15 @@
+"""
+.. autosummary::
+   :nosignatures:
+
+   won
+   uno
+   one
+   multiline_won
+   multiline_one
+   why
+"""
+
 import unittest2
 
 import deprecation
@@ -31,6 +43,35 @@ def one():
     """This function returns 1"""
     return 1
 
+
+@deprecation.deprecated(deprecated_in="1.0", removed_in="2.0",
+                        current_version=__version__,
+                        details="Use the ``multiline_one`` function instead")
+def multiline_won():
+    """This function returns 1.
+
+    There is no obvious reason, why this function returns 1.
+
+    Returns
+    -------
+    ret : int
+        This functions returns 1.
+    """
+    # Oops, it's one, not won. Let's deprecate this and get it right.
+    return 1
+
+
+def multiline_one():
+    """This function returns 1.
+
+    There is no obvious reason, why this function returns 1.
+
+    Returns
+    -------
+    ret : int
+        This functions returns 1.
+    """
+    return 1
 
 @deprecation.deprecated(deprecated_in="1.0", removed_in="1.5",
                         current_version=__version__,

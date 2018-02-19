@@ -19,6 +19,7 @@
 #
 import os
 import sys
+import glob
 sys.path.insert(0, os.path.abspath('../'))
 
 # -- General configuration ------------------------------------------------
@@ -30,8 +31,16 @@ sys.path.insert(0, os.path.abspath('../'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx']
+extensions = ['sphinx.ext.autodoc',
+              'sphinx.ext.autosummary',
+              'sphinx.ext.napoleon',
+              'sphinx.ext.intersphinx']
+
 intersphinx_mapping = {'python': ('https://docs.python.org/dev', None)}
+
+# autosummary for all *.rst-files
+rst_files = glob.glob('*.rst')
+autosummary_generate = rst_files
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
